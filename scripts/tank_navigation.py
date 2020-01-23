@@ -10,7 +10,6 @@ import time
 import RPi.GPIO as GPIO
  
 #remove or add the message type
-from std_msgs.msg import String, Float32, Image, LaserScan, Int32
 from geometry_msgs.msg import Twist
 
 """
@@ -90,9 +89,19 @@ Note that PWM will also stop if the instance variable 'p' goes out of scope.
 p_Right = GPIO.PWM(pwmPin_Right, 100)
 p_Left = GPIO.PWM(pwmPin_Left, 100)
 
+#Tank parameters
+wheelSep = 0.14
+wheelRadius = 0.05
+
 #define function/functions to provide the required functionality
 def speed_callback(msg):
-	rospy.loginfo("I heard %s", msg.linear.x)
+	print("Linear Vel %s \tRotation Vel %s " % (msg.linear.x, msg.angular.z))
+	
+	velDiff = (wheelSep * msg.angular.z) / 2.0
+	leftPower = (msg.linear.x + velDiff) / wheelRadius
+	rightPower = (msg.linear.x - velDiff) / wheelRadius
+	
+	print("leftPower %s \trightPower %s " % (leftPower, rightPower))
 
 if __name__=='__main__':
 	#Add here the name of the ROS. In ROS, names are unique named.
