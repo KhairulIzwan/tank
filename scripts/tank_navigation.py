@@ -95,13 +95,49 @@ wheelRadius = 0.05
 
 #define function/functions to provide the required functionality
 def speed_callback(msg):
-	print("Linear Vel %s \tRotation Vel %s " % (msg.linear.x, msg.angular.z))
+#	Print the actual data recieved
+#	print("Linear Vel %s \tRotation Vel %s " % (msg.linear.x, msg.angular.z))
 	
 	velDiff = (wheelSep * msg.angular.z) / 2.0
 	leftPower = (msg.linear.x + velDiff) / wheelRadius
 	rightPower = (msg.linear.x - velDiff) / wheelRadius
+	 
+#	print("leftPower %s \trightPower %s " % (leftPower, rightPower))
+
+#	Convert to PWM DC (0 ~ 100)
+	leftPWM = (leftPower - 0) * (100 - 0) / (4.4 - 0) + 0
+	rightPWM = (rightPower - 0) * (100 - 0) / (4.4 - 0) + 0
 	
-	print("leftPower %s \trightPower %s " % (leftPower, rightPower))
+	print("leftPower %s \tleftPWM %s " % (leftPower, leftPWM))
+	print("rightPower %s \trightPWM %s " % (rightPower, rightPWM))
+	
+	tank_navi(leftPWM, rightPWM)
+	
+def tank_navi(left, right):
+	if left > 0 and right > 0:
+#		tank forward
+		p_Right.start(abs(left))
+		p_Left.start(abs(right))
+		GPIO.output(dirPin_Right, GPIO.HIGH)
+		GPIO.output(dirPin_Left, GPIO.LOW)
+	elif left < 0 and right < 0:
+#		tank backward
+		p_Right.start(abs(left))
+		p_Left.start(abs(right))
+		GPIO.output(dirPin_Right, GPIO.LOW)
+		GPIO.output(dirPin_Left, GPIO.HIGH)
+	elif left < 0 and right > 0:
+#		tank turn left
+		p_Right.start(abs(left))
+		p_Left.start(abs(right))
+		GPIO.output(dirPin_Right, GPIO.HIGH)
+		GPIO.output(dirPin_Left, GPIO.HIGH)
+	elif left > 0 and right < 0:
+#		tank turn right
+		p_Right.start(abs(left))
+		p_Left.start(abs(right))
+		GPIO.output(dirPin_Right, GPIO.LOW)
+		GPIO.output(dirPin_Left, GPIO.LOW)
 
 if __name__=='__main__':
 	#Add here the name of the ROS. In ROS, names are unique named.
