@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 #Title: Python Subscriber for Tank Navigation
 #Author: Khairul Izwan Bin Kamsani - [23-01-2020]
