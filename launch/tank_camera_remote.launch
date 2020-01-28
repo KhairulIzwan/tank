@@ -1,0 +1,7 @@
+<launch>
+  <node name="image_converter"
+        pkg="tank"
+        type="image_converter.py"
+        args="38 80 10"
+        output="screen"/>
+</launch>
