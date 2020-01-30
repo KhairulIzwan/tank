@@ -1,0 +1,11 @@
+<launch>
+
+	<include file="$(find tank)/launch/tank_camera_robot.launch" />
+
+	<node	pkg="tank" 
+		name="tank_face_detector" 
+		type="tank_face_detection.py" 
+		output="screen">
+	</node>
+
+</launch>

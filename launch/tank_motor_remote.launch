@@ -1,0 +1,9 @@
+<launch>
+
+	<node	pkg="tank" 
+		name="tank_control" 
+		type="tank_teleop_key.py" 
+		output="screen">cm
+	</node>
+
+</launch>
