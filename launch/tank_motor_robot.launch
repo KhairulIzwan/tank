@@ -1,6 +1,6 @@
 <launch>
 
-	<node	pkg="rosserial_python" 
+	<node	pkg="rosserial_arduino" 
 		name="motor_control" 
 		type="serial_node.py" 
 		output="screen">

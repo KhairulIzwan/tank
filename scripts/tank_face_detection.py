@@ -18,7 +18,7 @@ from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import RegionOfInterest
 
 class TankFaceDetector:
-	
+
 	def __init__(self):
 		rospy.init_node("tank_face_detector")
 		self.bridge = CvBridge()
@@ -50,7 +50,7 @@ class TankFaceDetector:
 
 			self.pub.publish(roi)
 
-		cv2.imshow("Image", frameClone)
+		cv2.imshow("Face", frameClone)
 		cv2.waitKey(1)
 	
 	def convert_ros_to_opencv_img(self, ros_image):
@@ -81,7 +81,7 @@ def main(args):
 	try:
 		rospy.spin()
 		print ("[INFO] Tank Face Detector [ONLINE]")
-	except KeyboardInterrupt:
+	except ROSInterruptException:
 		print ("[INFO] Tank Face Detector [OFFLINE]")
 	
 	cv2.destroyAllWindows()

@@ -18,7 +18,7 @@ from cv_bridge import CvBridgeError
 
 import numpy as np
 
-class image_converter_node:
+class tank_vision_node:
     def __init__(self, gamma, alpha, beta):
         self.gamma = float(gamma)
         self.alpha = float(alpha)
@@ -46,12 +46,12 @@ class image_converter_node:
             self.beta = 0.01
 
         """  Initializing your ROS Node """
-        rospy.init_node('image_converter_node', anonymous=True)
+        rospy.init_node('tank_vision_node', anonymous=True)
 
         rospy.on_shutdown(self.shutdown)
 
         """ Give the OpenCV display window a name """
-        self.cv_window_name = "Test Vision"
+        self.cv_window_name = "Tank Vision"
 
         """ Create the cv_bridge object """
         self.bridge = CvBridge()
@@ -63,7 +63,7 @@ class image_converter_node:
         self.imgRaw_sub = rospy.Subscriber("/camPi/camera_info", CameraInfo, self.getCameraInfo)
 
         """ Publish as the opencv image topic """
-        self.imgCV_pub = rospy.Publisher("/pi_opencv_img", Image, queue_size=10)
+        self.imgCV_pub = rospy.Publisher("/image_opencv", Image, queue_size=10)
 
     def callback(self,data):
         """ Convert the raw image to OpenCV format """
@@ -160,7 +160,7 @@ def usage():
     print("%s" % sys.argv[0])
 
 def main(args):
-    vn = image_converter_node(sys.argv[1], sys.argv[2], sys.argv[3])
+    tvn = tank_vision_node(sys.argv[1], sys.argv[2], sys.argv[3])
 
     try:
         rospy.spin()
