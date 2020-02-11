@@ -165,7 +165,7 @@ def main(args):
     try:
         rospy.spin()
     except KeyboardInterrupt:
-        print("Image converter node [OFFLINE]...")
+        print("Tank Vision testing-node [OFFLINE]...")
 
     cv2.destroyAllWindows()
 
@@ -174,5 +174,5 @@ if __name__ == '__main__':
         print(usage())
         sys.exit(1)
     else:
-        print("Image converter node [ONLINE]...")
+        print("Tank Vision testing-node [ONLINE]...")
         main(sys.argv)
