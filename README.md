@@ -5,6 +5,18 @@ Create the basic ROS packages control for **Tank** type robot. Consist of:
 * Motor Control, and
 * RPLidar Control
 
+## BringUp
+#### Turn ON the TANK -- The Camera, LiDAR, and Motor
+1. roscore
+2. rosrun cv_camera cv_camera_node _device:=/dev/video0
+3. rosrun tank tank_vision.py 38 80 10
+
+###### OR
+
+1. roslaunch tank tank_camera_robot.launch
+2. roslaunch tank tank_camera_remote.launch
+**required**: git clone xxxx packages
+
 ## Basic Vision
 #### Basic previewing of camera
 ###### ROS Image.msg --> OpenCV Image [Preview]
