@@ -46,3 +46,15 @@ Create the basic ROS packages control for **Tank** type robot. Consist of:
 
 1. roslaunch tank tank_camera_face_detection.launch
 **required**: git clone xxxx packages
+
+## Basic Vision
+#### Color Trackbar -- useful in finding tracked color
+###### ROS Image.msg --> OpenCV Image [Preview]
+1. roscore
+2. rosrun cv_camera cv_camera_node _device:=/dev/video0
+3. rosrun tank tank_color_range_trackbar.py
+
+###### OR
+
+1. roslaunch tank tank_color_range_trackbar.launch
+**required**: git clone xxxx packages

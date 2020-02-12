@@ -1,14 +1,20 @@
 #!/usr/bin/env python
 
+#Title: Python Subscriber for Tank Color Calibration (Selection for HSV Range)
+#Author: Khairul Izwan Bin Kamsani - [12-02-2020]
+#Description: Tank Color Range Subcriber Nodes (Python)
+
 from __future__ import print_function
 from __future__ import division
 
+#remove or add the library/libraries for ROS
 import sys
 import rospy
 import os
 import cv2
 import imutils
 
+#remove or add the message type
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from sensor_msgs.msg import RegionOfInterest
@@ -108,9 +114,6 @@ class range_detector_node:
 		finally:
 			cv2.destroyAllWindows()
 
-def usage():
-	print("%s" % sys.argv[0])
-
 def main(args):
 	vn = range_detector_node()
 
@@ -122,9 +125,5 @@ def main(args):
 	cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-	if len(sys.argv) > 1:
-		print(usage())
-		sys.exit(1)
-	else:
-		print("Color Range Calib. [ONLINE]...")
-		main(sys.argv)
+	print("Color Range Calib. [ONLINE]...")
+	main(sys.argv)

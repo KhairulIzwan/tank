@@ -1,0 +1,9 @@
+<launch>
+	<include file="$(find tank)/launch/tank_camera_robot.launch" />
+
+	<node	pkg="tank"
+		name="color_trackbar"
+		type="tank_color_range_trackbar.py"
+		output="screen">
+	</node>
+</launch>
