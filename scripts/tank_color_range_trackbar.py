@@ -120,10 +120,10 @@ def main(args):
 	try:
 		rospy.spin()
 	except KeyboardInterrupt:
-		print("Color Range Calib. [OFFLINE]...")
+		rospy.loginfo("Color Range Calib. [OFFLINE]...")
 
 	cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-	print("Color Range Calib. [ONLINE]...")
+	rospy.loginfo("Color Range Calib. [ONLINE]...")
 	main(sys.argv)

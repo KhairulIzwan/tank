@@ -8,39 +8,49 @@ Create the basic ROS packages control for **Tank** type robot. Consist of:
 ## BringUp
 #### Turn ON the TANK -- The Camera, LiDAR, and Motor
 1. roscore
-2. rosrun cv_camera cv_camera_node _device:=/dev/video0
-3. rosrun tank tank_vision.py 38 80 10
+2. roslaunch tank tank_motor_remote.launch
+3. roslaunch tank tank_camera_remote.launch
+4. roslaunch rplidar_ros rpilidar.launch
 
 ###### OR
 
-1. roslaunch tank tank_camera_robot.launch
-2. roslaunch tank tank_camera_remote.launch
+1. roslaunch tank tank_robot.launch
 **required**: git clone xxxx packages
 
-## Basic Vision
-#### Basic previewing of camera
-###### ROS Image.msg --> OpenCV Image [Preview]
-1. roscore
-2. rosrun cv_camera cv_camera_node _device:=/dev/video0
-3. rosrun tank tank_vision.py 38 80 10
-
-###### OR
-
-1. roslaunch tank tank_camera_robot.launch
-2. roslaunch tank tank_camera_remote.launch
-**required**: git clone xxxx packages
-
-## Basic Navigation
-#### Basic control of robot navigation using keyboard
-###### Keyboard Controlled [tele-operation]
+## Basic Operation
+#### Tele-Operation -- Keyboard
 1. roscore
 2. rosrun rosserial_arduino serial_node.py /dev/ttyACM0
 3. rosrun tank tank_teleop_key.py
 
 ###### OR
 
-1. roslaunch tank tank_motor_robot.launch
-2. roslaunch tank tank_motor_remote.launch
+1. roslaunch tank tank_robot.launch
+2. rosrun tank tank_teleop_key.py
+
+###### OR
+
+1. roslaunch tank tank_robot.launch
+2. roslaunch tank tank_motor_teleop.launch
+**required**: git clone xxxx packages
+
+## Basic Vision
+#### Basic previewing of camera
+###### ROS Image.msg --> OpenCV Image [Preview]
+
+1. roscore
+2. rosrun cv_camera cv_camera_node _device:=/dev/video0
+3. rosrun tank tank_vision.py 38 80 10
+
+###### OR
+
+1. roslaunch tank tank_robot.launch
+2. rosrun tank tank_vision.py 38 80 10
+
+###### OR
+
+1. roslaunch tank tank_robot.launch
+2. roslaunch tank tank_camera_preview.launch
 **required**: git clone xxxx packages
 
 ## Basic RPLidar
