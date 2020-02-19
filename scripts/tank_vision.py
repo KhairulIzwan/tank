@@ -19,21 +19,25 @@ from cv_bridge import CvBridgeError
 import numpy as np
 
 class tank_vision_node:
-    def __init__(self, gamma, alpha, beta):
-        self.gamma = float(gamma)
-        self.alpha = float(alpha)
-        self.beta = float(beta)
+#    def __init__(self, gamma, alpha, beta):
+    def __init__(self):
+#        self.gamma = float(gamma)
+#        self.alpha = float(alpha)
+#        self.beta = float(beta)
+	self.gamma = float(100)
+	self.alpha = float(100)
+	self.beta = float(0)
 
         if self.gamma > 0:
             self.gamma = float(self.gamma / 100)
         else:
             self.gamma = 0.01
 
-        # TODO:
-        # if self.ksize <= 3:
-        #     self.ksize = 3
-        # else:
-        #     self.ksize = self.ksize
+#        # TODO:
+#        # if self.ksize <= 3:
+#        #     self.ksize = 3
+#        # else:
+#        #     self.ksize = self.ksize
 
         if self.alpha > 0:
             self.alpha = float(self.alpha / 100)
@@ -160,19 +164,20 @@ def usage():
     print("%s" % sys.argv[0])
 
 def main(args):
-    tvn = tank_vision_node(sys.argv[1], sys.argv[2], sys.argv[3])
+#    tvn = tank_vision_node(sys.argv[1], sys.argv[2], sys.argv[3])
+    tvn = tank_vision_node()
 
     try:
         rospy.spin()
     except KeyboardInterrupt:
-        print("Tank Vision testing-node [OFFLINE]...")
+        rospy.loginfo("Tank Vision testing-node [OFFLINE]...")
 
     cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-    if len(sys.argv) < 1:
-        print(usage())
-        sys.exit(1)
-    else:
-        print("Tank Vision testing-node [ONLINE]...")
-        main(sys.argv)
+#    if len(sys.argv) < 1:
+#        print(usage())
+#        sys.exit(1)
+#    else:
+	rospy.loginfo("Tank Vision testing-node [ONLINE]...")
+	main(sys.argv)

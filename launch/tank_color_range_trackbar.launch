@@ -1,5 +1,5 @@
 <launch>
-	<include file="$(find tank)/launch/tank_camera_robot.launch" />
+	<!-- <include file="$(find tank)/launch/tank_camera_robot.launch" /> -->
 
 	<node	pkg="tank"
 		name="color_trackbar"
