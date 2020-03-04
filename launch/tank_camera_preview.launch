@@ -1,6 +1,9 @@
 <launch>
-  <node name="camera_preview"
-        pkg="tank_camera"
-        type="camera_preview.py"
-        output="screen"/>
+
+	<node name="camera_preview"
+		pkg="tank_camera"
+		type="preview.py"
+		output="screen">
+	</node>
+
 </launch>

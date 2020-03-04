@@ -1,5 +1,9 @@
 <launch>
 
+	<!-- Execute cv_camera node file -->
+	<!-- Located at package: cv_camera -->
+	<!-- Named as: cv_camera (name as you wish; meaningful) -->
+	<!-- Node filename: cv_camera_node -->
 	<node	pkg="cv_camera" 
 		name="cv_camera" 
 		type="cv_camera_node" 
